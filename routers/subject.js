@@ -3,45 +3,41 @@ var router = express.Router()
 const db = require('../models');
 
 router.get('/', function (req, res) {
-  db.teacher.findAll()
+  db.subject.findAll()
   .then(result => {
-    res.render('teachers', {data_teachers: result})
+    res.render('subjects', {data_subjects: result})
   })
 })
 
 router.get('/add', function (req, res) {
-  res.render('teacher-add')
+  res.render('subjects-add')
 })
 
 router.post('/add', function (req, res) {
-  db.teacher.create({
-    first_name: req.body.firstname,
-    last_name: req.body.lastname,
-    email: req.body.email,
+  db.subject.create({
+    subject_name: req.body.subject_name,
     createdAt: new Date(),
     updatedAt: new Date()
   })
   .then(result => {
-    res.redirect('/teachers')
+    res.redirect('/subjects')
   })
 })
 
 router.get('/:id/edit', function (req, res) {
-  db.teacher.findAll({
+  db.subject.findAll({
     where: {
       id: req.params.id
     }
   })
   .then(result => {
-    res.render('teacher-edit', {data_teachers: result})
+    res.render('subjects-edit', {data_subjects: result})
   })
 })
 
 router.post('/:id/edit', function (req, res) {
-  db.teacher.update({
-    first_name: req.body.firstname,
-    last_name: req.body.lastname,
-    email: req.body.email,
+  db.subject.update({
+    subject_name: req.body.subject_name,
     createdAt: new Date(),
     updatedAt: new Date()
   },{
@@ -50,18 +46,18 @@ router.post('/:id/edit', function (req, res) {
     }
   })
   .then(result => {
-    res.redirect('/teachers')
+    res.redirect('/subjects')
   })
 })
 
 router.get('/:id/delete', function (req, res) {
-  db.teacher.destroy({
+  db.subject.destroy({
     where: {
       id: req.params.id
     }
   })
   .then(result => {
-    res.redirect('/teachers')
+    res.redirect('/subjects')
   })
 })
 
