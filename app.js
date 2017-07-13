@@ -25,6 +25,6 @@ const students = require('./routers/student');
 app.use('/', index)
 app.use('/teachers', teachers)
 app.use('/subjects', subjects)
-app.use('/students', student)
+app.use('/students', students)
 
 app.listen(3000)
