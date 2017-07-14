@@ -21,6 +21,7 @@
             <thead>
               <th>No</th>
               <th>Subject Name</th>
+              <th>Teachers</th>
               <th>Action</th>
 
             </thead>
@@ -29,6 +30,19 @@
             <tr>
               <td><%= i %><% i += 1 %></td>
               <td><%= getData.subject_name %></td>
+              <td>
+                <% if(getData.teachers[0] !== undefined) {%>
+                <% var k = 1; for(var j =0; j < getData.teachers.length; j++) { %>
+
+                <%= k %><% k += 1 %>.
+                <%= getData.teachers[j].first_name  %> <%= getData.teachers[j].last_name  %> <br>
+                <% } %>
+
+                <% } else {%>
+                  Gak ada guru
+                  <%}%>
+
+              </td>
 
               <td>
                 <a href="/subjects/<%= getData.id %>/edit"><button type="button" name="button" class="btn btn-info">Edit</button></a>
@@ -41,7 +55,7 @@
     </div>
   </div>
 </div>
-    <script src="./jss/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
   </body>
 </html>

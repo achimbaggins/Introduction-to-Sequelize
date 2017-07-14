@@ -14,15 +14,29 @@ router.get('/add', function (req, res) {
 })
 
 router.post('/add', function (req, res) {
-  db.students.create({
-    firstname: req.body.firstname,
-    lastname: req.body.lastname,
-    email: req.body.email,
-    createdAt: new Date(),
-    updatedAt: new Date()
+  db.students.findAll({
+    where: {
+      email: req.body.email
+    }
   })
   .then(result => {
-    res.redirect('/students')
+    if(!result){
+      db.students.create({
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
+        email: req.body.email,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      })
+      .then(result => {
+        res.redirect('/students')
+      })
+      .catch(err => {
+        res.send(err);
+      })
+    } else {
+      res.render('/students/add', {err: "Email already registered! Please use another email!!!"})
+    }
   })
 })
 
