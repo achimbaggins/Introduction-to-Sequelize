@@ -7,10 +7,6 @@ router.get('/', function (req, res) {
     include: [db.teacher]
   })
   .then(result => {
-    // result.forEach(elem => {
-    //   // body...
-    //   console.log(`************ ${JSON.stringify(elem.teachers)}`);
-    // });
     res.render('subjects', {data_subjects: result})
   })
 })

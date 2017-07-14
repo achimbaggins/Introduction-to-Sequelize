@@ -32,7 +32,8 @@
               <td><%= getData.subject_name %></td>
               <td>
                 <% if(getData.teachers[0] !== undefined) {%>
-                <% var k = 1; for(var j =0; j < getData.teachers.length; j++) { %>
+                <% var k = 1;
+                for(var j =0; j < getData.teachers.length; j++) { %>
 
                 <%= k %><% k += 1 %>.
                 <%= getData.teachers[j].first_name  %> <%= getData.teachers[j].last_name  %> <br>
