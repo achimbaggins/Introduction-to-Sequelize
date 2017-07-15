@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Introduction to Sequelize</title>
+
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+
+  </head>
+  <body>
+<div class="container">
+  <div class="row">
+    <div class="col-sg-6">
+      <h1 class="text-center">Adding Subjects to Students</h1>
+      <center>
+
+      </center>
+          <table class="table table-striped" align="center" width="500">
+            <tr>
+              <td class="text-center">
+                <a href="../"><button type="button" name="button" class="btn btn-primary">Home</button></a>
+                <!-- <a href=""><button type="button" name="button" class="btn btn-warning">Add New</button></a> -->
+            </td>
+            </tr>
+            <tr>
+              <td><center>
+                <% data_students.forEach(getData => { %>
+
+                <form action="/students/<%= getData.id %>/add-subjects" method="post"  class="form-inline">
+                <table>
+                  <tr>
+                    <td><label>Student Firstname</label> <br></td>
+                    <td>: </td>
+                    <td> &nbsp; <%= getData.firstname %></td>
+                  </tr>
+                  <tr>
+                    <td><label>Student Lastname</label> <br></td>
+                    <td>: </td>
+                    <td> &nbsp; <%= getData.lastname %></td>
+                  </tr>
+                  <tr>
+                    <td><label>Student Email</label> <br></td>
+                    <td>: </td>
+                    <td> &nbsp; <%= getData.email %></td>
+                  </tr>
+                  <tr>
+                    <td><label>Pick One Subject</label> <br></td>
+                    <td>: </td>
+                    <td> &nbsp;
+                      <select name="subjectId" class="form-control" >
+                        <% data_subject.forEach(getData => { %>
+                        <option value="<%= getData.id %>"><%= getData.id %> -- <%= getData.subject_name %></option>
+                        <% }) %>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="3" class="text-center"><br>
+                      <button type="submit" name="button" class="btn btn-success">Add Subject to Student </button>
+                    </td>
+                  </tr>
+                </table>
+                </form>
+                <% }) %>
+                </center>
+              </td>
+            </tr>
+          </table>
+
+    </div>
+  </div>
+</div>
+    <script src="./jss/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>

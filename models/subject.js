@@ -6,6 +6,12 @@ module.exports = function(sequelize, DataTypes) {
 
   subject.associate = (models) => {
     subject.hasMany(models.teacher);
+    subject.associate = (models) => {
+      subject.belongsToMany(models.students, {
+        through: 'getstudy'
+      });
+    }
+
   }
   return subject;
 };

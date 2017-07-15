@@ -14,13 +14,6 @@ router.get('/add', function (req, res) {
 })
 
 router.post('/add', function (req, res) {
-  db.students.findAll({
-    where: {
-      email: req.body.email
-    }
-  })
-  .then(result => {
-    if(!result){
       db.students.create({
         firstname: req.body.firstname,
         lastname: req.body.lastname,
@@ -28,16 +21,7 @@ router.post('/add', function (req, res) {
         createdAt: new Date(),
         updatedAt: new Date()
       })
-      .then(result => {
-        res.redirect('/students')
-      })
-      .catch(err => {
-        res.send(err);
-      })
-    } else {
-      res.render('/students/add', {err: "Email already registered! Please use another email!!!"})
-    }
-  })
+      res.redirect('/students')
 })
 
 router.get('/:id/edit', function (req, res) {
@@ -78,5 +62,34 @@ router.get('/:id/delete', function (req, res) {
     res.redirect('/students')
   })
 })
+
+router.get('/:id/add-subjects', function (req, res) {
+  db.students.findAll({
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(datasiswa => {
+    db.subject.findAll()
+    .then(subject => {
+      res.render('student-add-subject', {data_students: datasiswa, data_subject: subject})
+    })
+  })
+})
+
+router.post('/:id/add-subjects', function (req, res) {
+  db.getstudy.create({
+    subjectId: req.body.subjectId,
+    studentId: req.params.id,
+    createdAt: new Date(),
+    updatedAt: new Date()
+  })
+  .then(result => {
+    res.redirect('/students')
+  })
+
+})
+
+
 
 module.exports = router;

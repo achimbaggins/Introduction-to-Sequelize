@@ -63,4 +63,53 @@ router.get('/:id/delete', function (req, res) {
   })
 })
 
+router.get('/:id/:name/enrolled-students', function (req, res) {
+  db.getstudy.findAll({
+    where: {
+      subjectId: req.params.id
+    },
+    include: [{ all: true }]
+  })
+  .then(result => {
+    res.render('enrolled-students', {enrolled_data: result})
+  })
+})
+
+
+router.get('/:id/:ids/give-score', function (req, res) {
+  db.students.findAll({
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(datasiswa => {
+    db.subject.findAll({
+      where: {
+        id: req.params.ids
+      }
+    })
+    .then(datasubject => {
+      res.render('give-score', {datasiswa: datasiswa, datasubject: datasubject})
+    })
+  })
+})
+
+router.post('/:id/:ids/give-score', function (req, res) {
+  db.getstudy.update({
+    score: req.body.score,
+    createdAt: new Date(),
+    updatedAt: new Date()
+
+  },{
+    where: {
+      studentId: req.params.id,
+      $and: {
+        subjectId: req.params.ids
+      }
+    }
+  })
+  .then(result => {
+    res.redirect('/subjects')
+  })
+})
 module.exports = router;

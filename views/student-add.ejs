@@ -15,7 +15,7 @@
     <div class="col-sg-6">
       <h1 class="text-center">Add new Students</h1>
       <center>
-<span><%= err?err:"" %></span>
+<span></span>
       </center>
           <table class="table table-striped" align="center" width="500">
             <tr>
@@ -27,9 +27,9 @@
             <tr>
               <td class="text-center">
                 <form action="/students/add" method="post"  class="form-inline">
-                  <input type="text" name="firstname" placeholder="your firstname" class="form-control" >
-                  <input type="text" name="lastname" placeholder="your lastname" class="form-control" >
-                  <input type="email" name="email" placeholder="your email" class="form-control" >
+                  <input type="text" name="firstname" placeholder="student firstname" class="form-control" >
+                  <input type="text" name="lastname" placeholder="student lastname" class="form-control" >
+                  <input type="email" name="email" placeholder="student email" class="form-control" >
                   <button type="submit" name="button" class="btn btn-success">Add New</button>
                 </form>
               </td>
