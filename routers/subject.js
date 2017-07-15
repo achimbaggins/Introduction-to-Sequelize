@@ -76,7 +76,7 @@ router.get('/:id/:name/enrolled-students', function (req, res) {
 })
 
 
-router.get('/:id/:ids/give-score', function (req, res) {
+router.get('/:id/:ids/:name/give-score', function (req, res) {
   db.students.findAll({
     where: {
       id: req.params.id
@@ -94,7 +94,7 @@ router.get('/:id/:ids/give-score', function (req, res) {
   })
 })
 
-router.post('/:id/:ids/give-score', function (req, res) {
+router.post('/:id/:ids/:name/give-score', function (req, res) {
   db.getstudy.update({
     score: req.body.score,
     createdAt: new Date(),
@@ -109,7 +109,7 @@ router.post('/:id/:ids/give-score', function (req, res) {
     }
   })
   .then(result => {
-    res.redirect('/subjects')
+    res.redirect(`/subjects/${req.params.ids}/${req.params.name}/enrolled-students`)
   })
 })
 module.exports = router;

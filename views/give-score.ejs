@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Introduction to Sequelize</title>
 
-    <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../../css/bootstrap.min.css" rel="stylesheet">
 
   </head>
   <body>
@@ -21,7 +21,7 @@
         </center><br><br>
         <center>
 
-          <form action="/subjects/<% datasiswa.forEach(Siswa => { %><%= Siswa.id %><% }) %>/<% datasubject.forEach(Subject => { %><%= Subject.id %><% }) %>/give-score" method="post"  class="form-inline">
+          <form action="/subjects/<% datasiswa.forEach(Siswa => { %><%= Siswa.id %><% }) %>/<% datasubject.forEach(Subject => { %><%= Subject.id %><% }) %>/<% datasubject.forEach(Subject => { %><%= Subject.subject_name %><% }) %>/give-score" method="post"  class="form-inline">
           <table  class="table-hover">
             <tr>
               <td><label>Student Name </label> <br></td>

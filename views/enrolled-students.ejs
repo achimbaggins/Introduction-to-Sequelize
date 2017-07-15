@@ -38,7 +38,7 @@
                 </td>
                 <td class="text-center">
                   <% if(getData.score == undefined){%>
-                    <a href="/subjects/<%= getData.student.id %>/<%= getData.subject.id %>/give-score">
+                    <a href="/subjects/<%= getData.student.id %>/<%= getData.subject.id %>/<%= getData.subject.subject_name %>/give-score">
                       <button type="button" name="button" class="btn btn-primary">Give Score</button>
                     </a>
                   <% } else { %>
