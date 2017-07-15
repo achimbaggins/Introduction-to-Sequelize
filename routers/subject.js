@@ -4,7 +4,9 @@ const db = require('../models');
 
 router.get('/', function (req, res) {
   db.subject.findAll({
+    order: [['subject_name', 'ASC']],
     include: [db.teacher]
+
   })
   .then(result => {
     res.render('subjects', {data_subjects: result})
@@ -65,6 +67,7 @@ router.get('/:id/delete', function (req, res) {
 
 router.get('/:id/:name/enrolled-students', function (req, res) {
   db.getstudy.findAll({
+    order: [['student', 'firstname', 'ASC']],
     where: {
       subjectId: req.params.id
     },

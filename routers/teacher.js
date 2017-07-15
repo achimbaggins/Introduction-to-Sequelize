@@ -4,6 +4,7 @@ const db = require('../models');
 
 router.get('/', function (req, res) {
   db.teacher.findAll({
+    order: [['first_name', 'ASC']],
     include: [db.subject]
   })
   .then(result => {
