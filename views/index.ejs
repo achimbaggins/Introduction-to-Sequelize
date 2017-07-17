@@ -1,13 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    
+
     <%- include layout/head %>
 
   </head>
   <body>
-    <%- include layout/navbar%>
-    <%- include layout/header%>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2 col-md-offset-5">
+          <center>
+            <h4>Login Page</h4>
+            <% if(err){ %>
+              username dan password tidak dikenal
+            <%}%>
+          </center>
+          <form class="form-inline" action="/login" method="post">
+            <label for="username">Username</label><br>
+            <input type="text" name="username" class="form-control"><br>
+            <label for="username">Username</label><br>
+            <input type="password" name="password" class="form-control"><br><br>
+            <button type="submit" name="button" class="btn btn-info">Log in</button>
+          </form>
+        </div>
+      </div>
+    </div>
     <%- include layout/footer%>
 
   </body>
