@@ -1,6 +1,7 @@
 const express = require('express');
 var router = express.Router()
 const db = require('../models');
+const descScore = require('../helpers/desc');
 
 router.get('/', function (req, res) {
   db.subject.findAll({
@@ -74,7 +75,13 @@ router.get('/:id/:name/enrolled-students', function (req, res) {
     include: [{ all: true }]
   })
   .then(result => {
-    res.render('enrolled-students', {enrolled_data: result})
+    scoreArr = []
+    for(let i = 0; i < result.length; i++){
+      scoreArr.push(result[i].score)
+    }
+    console.log(scoreArr + '==================================');
+
+    res.render('enrolled-students', {enrolled_data: result, nilai: descScore(scoreArr)})
   })
 })
 

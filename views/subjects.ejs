@@ -4,65 +4,64 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Introduction to Sequelize</title>
-
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <%- include layout/head %>
 
   </head>
   <body>
-<div class="container">
-  <div class="row">
-    <div class="col-md-8 col-md-offset-2">
-      <h1 class="text-center">Subjects List</h1>
+    <%- include layout/navbar%>
 
-      <a href="../"><button type="button" name="button" class="btn btn-primary">Home</button></a>
-      <a href="./subjects/add"><button type="button" name="button" class="btn btn-warning">Add New</button></a>
-          <table class="table table-striped table-hover">
-            <thead>
-              <th class="text-center">No</th>
-              <th>Subject Name</th>
-              <th>Teachers</th>
-              <th>Show All Students</th>
-              <th>Action</th>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2">
+            <h1 class="text-center">Subjects List</h1>
 
-            </thead>
-            <% var i = 1; data_subjects.forEach(getData => { %>
-                <tr>
-                  <td class="text-center"><%= i %><% i += 1 %></td>
-                  <td><%= getData.subject_name %></td>
-                  <td>
-                    <ol>
-                      <% if(getData.teachers[0] !== undefined) {%>
-                        <% for(var j =0; j < getData.teachers.length; j++) { %>
+            <a href="../"><button type="button" name="button" class="btn btn-primary">Home</button></a>
+            <a href="./subjects/add"><button type="button" name="button" class="btn btn-warning">Add New</button></a>
+                <table class="table table-striped table-hover">
+                  <thead>
+                    <th class="text-center">No</th>
+                    <th>Subject Name</th>
+                    <th>Teachers</th>
+                    <th>Show All Students</th>
+                    <th>Action</th>
 
-                          <li><%= getData.teachers[j].first_name  +' '+ getData.teachers[j].last_name  %></li>
-                      <% } %>
+                  </thead>
+                  <% var i = 1; data_subjects.forEach(getData => { %>
+                      <tr>
+                        <td class="text-center"><%= i %><% i += 1 %></td>
+                        <td><%= getData.subject_name %></td>
+                        <td>
+                          <ol>
+                            <% if(getData.teachers[0] !== undefined) {%>
+                              <% for(var j =0; j < getData.teachers.length; j++) { %>
 
-                      <% } else {%>
-                        <a href="/teachers/add">
-                          <button type="button" name="button" class="btn btn-danger">Add Teacher</button>
-                        </a>
-                      <%}%>
-                    </ol>
-                  </td>
-                  <td>
-                    <a href="/subjects/<%= getData.id %>/<%= getData.subject_name %>/enrolled-students">
-                      <button type="button" name="button"class="btn btn-success">Enrolled Students</button>
-                    </a>
-                  </td>
+                                <li><%= getData.teachers[j].first_name  +' '+ getData.teachers[j].last_name  %></li>
+                            <% } %>
 
-                  <td>
-                    <a href="/subjects/<%= getData.id %>/edit"><button type="button" name="button" class="btn btn-info">Edit</button></a>
-                    <a href="/subjects/<%= getData.id %>/delete"><button type="button" name="button" class="btn btn-danger">Delete</button></a>
-                  </td>
-                </tr>
-            <% }) %>
-          </table>
+                            <% } else {%>
+                              <a href="/teachers/add">
+                                <button type="button" name="button" class="btn btn-danger">Add Teacher</button>
+                              </a>
+                            <%}%>
+                          </ol>
+                        </td>
+                        <td>
+                          <a href="/subjects/<%= getData.id %>/<%= getData.subject_name %>/enrolled-students">
+                            <button type="button" name="button"class="btn btn-success">Enrolled Students</button>
+                          </a>
+                        </td>
 
-    </div>
-  </div>
-</div>
-    <script src="../js/jquery.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
+                        <td>
+                          <a href="/subjects/<%= getData.id %>/edit"><button type="button" name="button" class="btn btn-info">Edit</button></a>
+                          <a href="/subjects/<%= getData.id %>/delete"><button type="button" name="button" class="btn btn-danger">Delete</button></a>
+                        </td>
+                      </tr>
+                  <% }) %>
+                </table>
+
+          </div>
+        </div>
+      </div>
+      <%- include layout/footer%>
   </body>
 </html>

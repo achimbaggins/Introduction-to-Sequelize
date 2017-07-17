@@ -27,6 +27,7 @@
               <th class="text-center">No</th>
               <th>Students Name</th>
               <th class="text-center">Score</th>
+              <th class="text-center">Desc</th>
             </thead>
             <% var i = 1; enrolled_data.forEach(getData => { %>
               <tr>
@@ -45,7 +46,11 @@
                     <%= getData.score %>
                   <%}%>
                 </td>
+                <td class="text-center">
+                  <%= nilai[i-2] %>
+                </td>
               </tr>
+
             <% }) %>
 
           </table>
