@@ -19,11 +19,13 @@ const Index = require('./models/index');
 const Teachers = require('./models/teacher');
 const Subjects = require('./models/subject');
 const Students = require('./models/students');
+const User = require('./models/user');
 
 const index = require('./routers/index');
 const teachers = require('./routers/teacher');
 const subjects = require('./routers/subject');
 const students = require('./routers/student');
+const user = require('./routers/user');
 
 var accessLogStream = fs.createWriteStream(__dirname + '/logs/access.log', {flags: 'a'});
 app.use(morgan('combined',{stream: accessLogStream}));
@@ -36,33 +38,9 @@ app.use(session({
 }))
 
 app.use('/', index)
-
-
-app.use((req, res, next) => {
-  if(req.session.authority > 0){
-    next()
-  } else {
-    res.sendStatus(403);
-  }
-})
 app.use('/students', students)
-
-app.use((req, res, next) => {
-  if(req.session.authority > 1){
-    next()
-  } else {
-    res.sendStatus(403);
-  }
-})
 app.use('/subjects', subjects)
-
-app.use((req, res, next) => {
-  if(req.session.authority === 3){
-    next()
-  } else {
-    res.sendStatus(403);
-  }
-})
 app.use('/teachers', teachers)
+app.use('/users', user)
 
 app.listen(3000)

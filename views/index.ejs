@@ -9,20 +9,30 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-md-2 col-md-offset-5">
+        <div class="col-md-4 col-md-offset-4">
           <center>
             <h4>Login Page</h4>
             <% if(err){ %>
-              username dan password tidak dikenal
+              <span style="color:red">username dan password tidak dikenal</span>
             <%}%>
+          <script src="js/form.js"></script>
+          <table class="table">
+            <tr>
+              <td align="center">
+                <form class="form-inline" action="/login" method="post">
+                  <label for="username">Username</label><br>
+                  <p><span id="ceknama" style="color:red"></span></p>
+                  <input type="text" name="username" class="form-control" width=100%;><br>
+                  <label for="username">Password</label><br>
+                  <p><span id="cekpassword" style="color:red"></span></p>
+                  <input type="password" name="password" class="form-control"><br><br>
+                  <button  onclick="return validasi()" type="submit" name="button" class="btn btn-info">Log in</button>
+                </form>
+              </td>
+            </tr>
+          </table>
           </center>
-          <form class="form-inline" action="/login" method="post">
-            <label for="username">Username</label><br>
-            <input type="text" name="username" class="form-control"><br>
-            <label for="username">Username</label><br>
-            <input type="password" name="password" class="form-control"><br><br>
-            <button type="submit" name="button" class="btn btn-info">Log in</button>
-          </form>
+
         </div>
       </div>
     </div>

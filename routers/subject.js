@@ -3,6 +3,15 @@ var router = express.Router()
 const db = require('../models');
 const descScore = require('../helpers/desc');
 
+
+router.use((req, res, next) => {
+  if(req.session.authority > 1){
+    next()
+  } else {
+    res.sendStatus(403);
+  }
+})
+
 router.get('/', function (req, res) {
   db.subject.findAll({
     order: [['subject_name', 'ASC']],

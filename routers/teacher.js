@@ -2,6 +2,17 @@ const express = require('express');
 var router = express.Router()
 const db = require('../models');
 
+
+
+router.use((req, res, next) => {
+  if(req.session.authority === 3){
+    next()
+  } else {
+    res.sendStatus(403);
+  }
+})
+
+
 router.get('/', function (req, res) {
   db.teacher.findAll({
     order: [['first_name', 'ASC']],
@@ -11,7 +22,11 @@ router.get('/', function (req, res) {
     // result.forEach(elem => {
     //   console.log(`************ ${JSON.stringify(elem)}`);
     // });
-    res.render('teachers', {data_teachers: result})
+    res.render('teachers', {
+      data_teachers: result,
+      session: req.session.user,
+      session_role: req.session.role
+    })
   })
 })
 
