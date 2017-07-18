@@ -4,12 +4,14 @@ module.exports = function(sequelize, DataTypes) {
     firstname: DataTypes.STRING,
     lastname: DataTypes.STRING,
     email: DataTypes.STRING
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
   });
+
+
+  students.associate = (models) => {
+    students.belongsToMany(models.subject, {
+      through: 'getstudy'
+    })
+  }
+
   return students;
 };

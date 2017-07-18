@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Introduction to Sequelize</title>
+
+    <%- include layout/head %>
+
+  </head>
+  <body>
+    <%- include layout/navbar%>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h1 class="text-center">Students List</h1>
+
+      <a href="/home"><button type="button" name="button" class="btn btn-primary">Home</button></a>
+      <a href="./students/add"><button type="button" name="button" class="btn btn-warning">Add New</button></a>
+
+          <table class="table table-striped table-hover">
+            <thead>
+              <th class="text-center">No</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email </th>
+              <th  class="text-center">Add Subject</th>
+              <th  class="text-center">Action </th>
+            </thead>
+            <% var i = 1; data_students.forEach(getData => { %>
+
+            <tr>
+              <td  class="text-center"><%= i %><% i += 1 %></td>
+              <td><%= getData.firstname %></td>
+              <td><%= getData.lastname %></td>
+              <td><%= getData.email %></td>
+              <td class="text-center"><a href="/students/<%= getData.id %>/add-subjects"><button type="button" name="button" class="btn btn-success">Add Subjects</button></a></td>
+              <td class="text-center">
+                <a href="/students/<%= getData.id %>/edit"><button type="button" name="button" class="btn btn-info">Edit</button></a>
+                <a href="/students/<%= getData.id %>/delete"><button type="button" name="button" class="btn btn-danger">Delete</button></a>
+              </td>
+            </tr>
+              <% }) %>
+          </table>
+
+    </div>
+  </div>
+</div>
+<%- include layout/footer%>
+
+  </body>
+</html>

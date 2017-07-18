@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Introduction to Sequelize</title>
+
+    <link href="../../../../css/bootstrap.min.css" rel="stylesheet">
+
+  </head>
+  <body>
+<div class="container">
+  <div class="row">
+    <div class="col-sg-6">
+
+          <h1 class="text-center">Give Score</h1>
+
+        <center>
+          <a href="/subjects"><button type="button" name="button" class="btn btn-primary"> Subjects List </button></a>
+        </center><br><br>
+        <center>
+
+          <form action="/subjects/<% datasiswa.forEach(Siswa => { %><%= Siswa.id %><% }) %>/<% datasubject.forEach(Subject => { %><%= Subject.id %><% }) %>/<% datasubject.forEach(Subject => { %><%= Subject.subject_name %><% }) %>/give-score" method="post"  class="form-inline">
+          <table  class="table-hover">
+            <tr>
+              <td><label>Student Name </label> <br></td>
+              <td>: </td>
+              <td> &nbsp; <% datasiswa.forEach(Siswa => { %><%= Siswa.firstname +' '+ Siswa.lastname %><% }) %></td>
+            </tr>
+            <tr>
+              <td><label>Subject Name</label> <br></td>
+              <td>: </td>
+              <td> &nbsp; <% datasubject.forEach(Subject => { %><%= Subject.subject_name %><% }) %></td>
+            </tr>
+            <tr>
+              <td><label>Give Score</label> <br></td>
+              <td>: </td>
+              <td>  &nbsp; <input type="text" name="score" >
+              </td>
+            </tr>
+            <tr>
+              <td colspan="3" class="text-center"><br>
+                <button type="submit" name="button" class="btn btn-success">Add Score</button>
+              </td>
+            </tr>
+          </table>
+          </form>
+          </center>
+    </div>
+  </div>
+</div>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+  </body>
+</html>

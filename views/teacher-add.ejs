@@ -13,7 +13,7 @@
 <div class="container">
   <div class="row">
     <div class="col-sg-6">
-      <h1 class="text-center">Teachers List</h1>
+      <h1 class="text-center">Add Teachers</h1>
       <center>
 
       </center>
@@ -27,10 +27,19 @@
             <tr>
               <td class="text-center">
                 <form action="/teachers/add" method="post"  class="form-inline">
-                  <input type="text" name="firstname" placeholder="your firstname" class="form-control" >
-                  <input type="text" name="lastname" placeholder="your lastname" class="form-control" >
-                  <input type="email" name="email" placeholder="your email" class="form-control" >
-                  <button type="submit" name="button" class="btn btn-success">Add New</button>
+                  <label>Teacher First Name</label><br>
+                  <input type="text" name="firstname" placeholder="your firstname" class="form-control" ><br><br>
+                  <label>Teacher Last Name</label><br>
+                  <input type="text" name="lastname" placeholder="your lastname" class="form-control" ><br><br>
+                  <label>Teacher Email</label><br>
+                  <input type="email" name="email" placeholder="your email" class="form-control" ><br><br>
+                  <label>Teacher Subject</label><br>
+                  <select name="subjectId" class="form-control" >
+                    <% data_subject.forEach(getData => { %>
+                    <option value="<%= getData.id %>"><%= getData.id %> -- <%= getData.subject_name %></option>
+                    <% }) %>
+                  </select><br><br>
+                  <button type="submit" name="button" class="btn btn-success">Add New Teacher</button>
                 </form>
               </td>
             </tr>

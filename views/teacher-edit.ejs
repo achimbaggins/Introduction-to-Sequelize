@@ -20,7 +20,7 @@
           <table class="table table-striped" align="center" width="500">
             <tr>
               <td class="text-center">
-                <a href="../teachers"><button type="button" name="button" class="btn btn-primary">Home</button></a>
+                <a href="../../"><button type="button" name="button" class="btn btn-primary">Home</button></a>
                 <!-- <a href=""><button type="button" name="button" class="btn btn-warning">Add New</button></a> -->
             </td>
             </tr>
@@ -29,9 +29,23 @@
                 <% data_teachers.forEach(getData => { %>
 
                 <form action="/teachers/<%= getData.id %>/edit" method="post"  class="form-inline">
-                  <input type="text" name="firstname" value="<%= getData.first_name %>" class="form-control" >
-                  <input type="text" name="lastname" value="<%= getData.last_name %>" class="form-control" >
-                  <input type="email" name="email" value="<%= getData.email %>" class="form-control" >
+                  <label>Teacher First Name</label><br>
+                  <input type="text" name="firstname" value="<%= getData.first_name %>" class="form-control" ><br><br>
+                  <label>Teacher Last Name</label><br>
+                  <input type="text" name="lastname" value="<%= getData.last_name %>" class="form-control" ><br><br>
+                  <label>Teacher Email</label><br>
+                  <input type="email" name="email" value="<%= getData.email %>" class="form-control" ><br><br>
+                  <label>Teacher Subject</label><br>
+                  <select name="subjectId" class="form-control" >
+                    <% data_subject.forEach(getSubject => {
+                        var selected = ""
+                        if(getSubject.id == getData.subjectId){
+                          selected = "selected"
+                        }
+                      %>
+                    <option value="<%= getSubject.id %>" <%= selected %>><%= getSubject.id %> -- <%= getSubject.subject_name %></option>
+                    <% } ) %>
+                  </select><br><br>
                   <button type="submit" name="button" class="btn btn-success">Update Data</button>
                 </form>
                 <% }) %>

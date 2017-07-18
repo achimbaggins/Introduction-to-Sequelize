@@ -4,34 +4,43 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Introduction to Sequelize</title>
-
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <%- include layout/head %>
 
   </head>
   <body>
+    <%- include layout/navbar%>
+
 <div class="container">
   <div class="row">
-    <div class="col-sg-6">
+    <div class="col-md-10 col-md-offset-1">
       <h1 class="text-center">Teachers List</h1>
 
-      <a href="../"><button type="button" name="button" class="btn btn-primary">Home</button></a>
+      <a href="/home"><button type="button" name="button" class="btn btn-primary">Home</button></a>
       <a href="./teachers/add"><button type="button" name="button" class="btn btn-warning">Add New</button></a>
           <table class="table table-striped table-hover">
             <thead>
-              <th>No</th>
+              <th class="text-center">No</th>
+              <th class="text-center">Teacher ID</th>
               <th>First Name</th>
               <th>Last Name</th>
               <th>Email </th>
+              <th>Subject</th>
               <th>Action </th>
             </thead>
             <% var i = 1; data_teachers.forEach(getData => { %>
 
             <tr>
-              <td><%= i %><% i += 1 %></td>
+              <td class="text-center"><%= i %><% i += 1 %></td>
+              <td class="text-center"><%= getData.id %></td>
               <td><%= getData.first_name %></td>
               <td><%= getData.last_name %></td>
               <td><%= getData.email %></td>
+              <% if(getData.subjectId != undefined) {%>
+                  <td><%= getData.subject.subject_name %> </td>
+                  <% } else { %>
+                  <td>unassigned</td>
+                  <% } %>
+
               <td>
                 <a href="/teachers/<%= getData.id %>/edit"><button type="button" name="button" class="btn btn-info">Edit</button></a>
                 <a href="/teachers/<%= getData.id %>/delete"><button type="button" name="button" class="btn btn-danger">Delete</button></a>

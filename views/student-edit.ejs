@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Introduction to Sequelize</title>
+
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+
+  </head>
+  <body>
+<div class="container">
+  <div class="row">
+    <div class="col-sg-6">
+      <h1 class="text-center">Students Data Editor</h1>
+      <center>
+
+      </center>
+          <table class="table table-striped" align="center" width="500">
+            <tr>
+              <td class="text-center">
+                <a href="../"><button type="button" name="button" class="btn btn-primary">Home</button></a>
+                <!-- <a href=""><button type="button" name="button" class="btn btn-warning">Add New</button></a> -->
+            </td>
+            </tr>
+            <tr>
+              <td class="text-center">
+                <% data_students.forEach(getData => { %>
+
+                <form action="/students/<%= getData.id %>/edit" method="post"  class="form-inline">
+                  <input type="text" name="firstname" value="<%= getData.firstname %>" class="form-control" >
+                  <input type="text" name="lastname" value="<%= getData.lastname %>" class="form-control" >
+                  <input type="email" name="email" value="<%= getData.email %>" class="form-control" >
+                  <button type="submit" name="button" class="btn btn-success">Update Data</button>
+                </form>
+                <% }) %>
+              </td>
+            </tr>
+          </table>
+
+    </div>
+  </div>
+</div>
+    <script src="./jss/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
